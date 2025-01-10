@@ -7,14 +7,14 @@ WORKDIR /app
 # Copiar arquivos de dependências
 COPY package*.json ./
 
-# Instalar dependências com flag para ignorar conflitos
+# Instalar dependências
 RUN npm install --legacy-peer-deps
 
 # Copiar o restante do código do projeto
 COPY . .
 
-# Construir a aplicação Expo para web
-RUN npx expo export --public-url http://localhost:4000
+# Construir a aplicação Expo
+RUN npx expo export
 
 # Etapa 2: Produção
 FROM nginx:alpine AS production
