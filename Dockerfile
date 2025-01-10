@@ -1,5 +1,5 @@
 # Etapa 1: Build
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 
 # Definir o diretório de trabalho
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN npm install
 # Copiar o restante do código do projeto
 COPY . .
 
-# Construir a aplicação Expo para produção
+# Construir a aplicação Expo para web
 RUN npx expo export:web
 
 # Etapa 2: Produção

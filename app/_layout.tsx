@@ -5,9 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-
+import { ReadableStream } from 'web-streams-polyfill/ponyfill';
 import { useColorScheme } from '@/hooks/useColorScheme';
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -27,6 +26,9 @@ export default function RootLayout() {
     return null;
   }
   
+  if (typeof global.ReadableStream === 'undefined') {
+      global.ReadableStream = ReadableStream as any;
+  }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
